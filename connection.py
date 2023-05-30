@@ -37,13 +37,6 @@ class User(pydantic.BaseModel) -> None:
     limit: str
     products: list[str]
 
-    @pydantic.validator("account_id")
-    @classmethod
-    def limit_validator(cls, value):
-        if any(p in value for p in string.punctuation):
-            raise ValueError("limit argument mustnt include pinctuations")
-        else:
-            return value
 
     @pydantic.validator("limit")
     @classmethod
